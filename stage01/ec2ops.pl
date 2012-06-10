@@ -646,7 +646,7 @@ sub parse_input {
 		    $cc_has_broker{"CC$1"} = 1;
 		}
 		if ($component =~ /NC\d+/) {
-		    if ($distro eq "FEDORA" || $distro eq "DEBIAN" || ( ($distro eq "RHEL" || $distro eq "CENTOS") && $version =~ /^6\./) || ($distro eq "UBUNTU" && $source eq "REPO")) {
+		    if ($distro eq "FEDORA" || $distro eq "DEBIAN" || ( ($distro eq "RHEL" || $distro eq "CENTOS") && $version =~ /^6\./) || ($distro eq "UBUNTU" && ( $source eq "REPO" || $version eq "PRECISE" )) ) {
 			$use_virtio = 1;
 			setbfeimagelocation("http://192.168.7.65/bfebs-image/bfebs.img");
 		    } elsif ($distro eq "UBUNTU") {
