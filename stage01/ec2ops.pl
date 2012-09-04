@@ -692,7 +692,11 @@ sub parse_input {
     if ($use_virtio) {
 	$devname = "/dev/vdb";
 	print "Using virtio device name: $devname\n";
-    }
+    }else{
+	### FOR USING PRECISE INSTANCE IMAGE 	090412
+	$devname = "/dev/xvdb";
+	print "Using virtio device name: $devname\n";
+    };
     
     if ($isha) {
 	setremote($masters{CLC});
@@ -972,7 +976,9 @@ sub find_instance_volume {
     if ($use_virtio) {
 	$cmd = "$runat ssh -o StrictHostKeyChecking=no -i $keypairfile root\@$instanceip 'ls /dev/vd\* | tail -n 1 | grep -v -e [0-9]'";
     } else {
-	$cmd = "$runat ssh -o StrictHostKeyChecking=no -i $keypairfile root\@$instanceip 'ls /dev/sd\* | grep -v sda | tail -n 1 | grep -v -e [0-9]'";
+#	$cmd = "$runat ssh -o StrictHostKeyChecking=no -i $keypairfile root\@$instanceip 'ls /dev/sd\* | grep -v sda | tail -n 1 | grep -v -e [0-9]'";
+	### FOR PRECISE INSTANCE IMAGE
+	$cmd = "$runat ssh -o StrictHostKeyChecking=no -i $keypairfile root\@$instanceip 'ls /dev/xvd\* | grep -v xvda | tail -n 1 | grep -v -e [0-9]'";
     }
     $done=0; 
     my $i;
