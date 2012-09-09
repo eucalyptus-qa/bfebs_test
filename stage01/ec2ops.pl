@@ -694,8 +694,13 @@ sub parse_input {
 	print "Using virtio device name: $devname\n";
     }else{
 	### FOR USING PRECISE INSTANCE IMAGE 	090412
-	$devname = "/dev/xvdb";
-	print "Using virtio device name: $devname\n";
+        ### FIXED TO IGNORE VMWARE CASE         090812
+        my $this_nc = `cat ../input/2b_tested.lst | grep NC00 | head -n 1`;
+        chomp($this_nc);
+        if( !($this_nc =~ /VMWARE/) ){
+                $devname = "/dev/xvdb";
+                print "Using virtio device name: $devname\n";
+        };
     };
     
     if ($isha) {
