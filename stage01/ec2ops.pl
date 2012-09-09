@@ -981,9 +981,15 @@ sub find_instance_volume {
     if ($use_virtio) {
 	$cmd = "$runat ssh -o StrictHostKeyChecking=no -i $keypairfile root\@$instanceip 'ls /dev/vd\* | tail -n 1 | grep -v -e [0-9]'";
     } else {
-#	$cmd = "$runat ssh -o StrictHostKeyChecking=no -i $keypairfile root\@$instanceip 'ls /dev/sd\* | grep -v sda | tail -n 1 | grep -v -e [0-9]'";
 	### FOR PRECISE INSTANCE IMAGE
-	$cmd = "$runat ssh -o StrictHostKeyChecking=no -i $keypairfile root\@$instanceip 'ls /dev/xvd\* | grep -v xvda | tail -n 1 | grep -v -e [0-9]'";
+        ### FIXED TO IGNORE VMWARE CASE         090812
+        my $this_nc = `cat ../input/2b_tested.lst | grep NC00 | head -n 1`;
+        chomp($this_nc);
+        if( !($this_nc =~ /VMWARE/) ){
+		$cmd = "$runat ssh -o StrictHostKeyChecking=no -i $keypairfile root\@$instanceip 'ls /dev/xvd\* | grep -v xvda | tail -n 1 | grep -v -e [0-9]'";
+	}else{
+		$cmd = "$runat ssh -o StrictHostKeyChecking=no -i $keypairfile root\@$instanceip 'ls /dev/sd\* | grep -v sda | tail -n 1 | grep -v -e [0-9]'";
+	};
     }
     $done=0; 
     my $i;
