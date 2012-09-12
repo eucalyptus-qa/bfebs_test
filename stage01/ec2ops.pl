@@ -2632,7 +2632,7 @@ sub populate_volume_with_image {
     run_instance_command("echo 192.168.7.65 archive.ubuntu.com >> /etc/hosts");
     run_instance_command("echo 192.168.7.65 security.ubuntu.com >> /etc/hosts");
     $oldrunat = $runat;
-    setrunat("runat 120");
+    setrunat("runat 600");
     run_instance_command("apt-get update; true");
     run_instance_command("apt-get install -y curl; true");
     if ( $bfe_image =~ /windows.*/) {                        
