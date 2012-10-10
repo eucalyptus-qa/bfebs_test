@@ -19,7 +19,7 @@ $library_sleep = 0;
 $devname = "/dev/sdc";
 $emitype = "instancestoreemi";
 $keypath = ".";
-$bfe_image = "http://192.168.7.65/bfebs-image/bfebs.img";
+$bfe_image = "http://mirror.qa.eucalyptus-systems.com/bfebs-image/bfebs.img";
 $piperetries = 1;
 $imgfile="";
 
@@ -648,11 +648,11 @@ sub parse_input {
 		if ($component =~ /NC\d+/) {
 		    if ($distro eq "FEDORA" || $distro eq "DEBIAN" || ( ($distro eq "RHEL" || $distro eq "CENTOS") && $version =~ /^6\./) || ($distro eq "UBUNTU" && ( $source eq "REPO" || $version eq "PRECISE" )) ) {
 			$use_virtio = 1;
-			setbfeimagelocation("http://192.168.7.65/bfebs-image/bfebs.img");
+			setbfeimagelocation("http://mirror.qa.eucalyptus-systems.com/bfebs-image/bfebs.img");
 		    } elsif ($distro eq "UBUNTU") {
-			setbfeimagelocation("http://192.168.7.65/bfebs-image/bfebs.img");
+			setbfeimagelocation("http://mirror.qa.eucalyptus-systems.com/bfebs-image/bfebs.img");
 		    } else {
-			setbfeimagelocation("http://192.168.7.65/bfebs-image/bfebs-xen.img");
+			setbfeimagelocation("http://mirror.qa.eucalyptus-systems.com/bfebs-image/bfebs-xen.img");
 		    }
 		    
 		}
@@ -2629,8 +2629,8 @@ sub populate_volume_with_image {
 	doexit(1, "populate_volume(): no IP ($ip) of local EBS device name ($idev)\n");
     }
 
-    run_instance_command("echo 192.168.7.65 archive.ubuntu.com >> /etc/hosts");
-    run_instance_command("echo 192.168.7.65 security.ubuntu.com >> /etc/hosts");
+    run_instance_command("echo mirror.qa.eucalyptus-systems.com archive.ubuntu.com >> /etc/hosts");
+    run_instance_command("echo mirror.qa.eucalyptus-systems.com security.ubuntu.com >> /etc/hosts");
     $oldrunat = $runat;
     setrunat("runat 600");
     run_instance_command("apt-get update; true");

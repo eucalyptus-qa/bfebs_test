@@ -90,7 +90,7 @@ find_instance_volume();
 $idev = $current_artifacts{instancedevice};
 print "SUCCESS: discovered instance local EBS dev name: $idev\n";
 
-setbfeimagelocation("http://192.168.7.65/bfebs-image/vmware/bfebs_vmwaretools.img");
+setbfeimagelocation("http://mirror.qa.eucalyptus-systems.com/bfebs-image/vmware/bfebs_vmwaretools.img");
 print "SUCCESS: Changed BFEBS URL: $bfe_image\n";
 
 populate_volume_with_image();
