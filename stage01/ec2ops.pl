@@ -2629,8 +2629,8 @@ sub populate_volume_with_image {
 	doexit(1, "populate_volume(): no IP ($ip) of local EBS device name ($idev)\n");
     }
 
-    run_instance_command("echo mirror.qa.eucalyptus-systems.com archive.ubuntu.com >> /etc/hosts");
-    run_instance_command("echo mirror.qa.eucalyptus-systems.com security.ubuntu.com >> /etc/hosts");
+    run_instance_command("echo 192.168.51.160 archive.ubuntu.com >> /etc/hosts");	###	QUICK HACK TO RETIRE 192.168.7.65 - Kyo 10/09/12
+    run_instance_command("echo 192.168.51.160 security.ubuntu.com >> /etc/hosts");	###     QUICK HACK TO RETIRE 192.168.7.65 - Kyo 10/09/12
     $oldrunat = $runat;
     setrunat("runat 600");
     run_instance_command("apt-get update; true");
