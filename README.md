@@ -1,3 +1,31 @@
+
+bfebs_test
+==========
+
+## Description
+
+Test BFEBS-related functionality of Eucalyptus
+
+## Procedure
+
+1. prepare();
+2. run_instance("instancestore");
+3. ssh_to_instance();
+4. get_console_output();
+5. create_volume();
+6. attach_volume();
+7. populate_volume();
+8. detach_volume();                                                                                               
+9. prepare_snap("root");
+10. register_snap("root");
+11. run_instance("root");
+12. #ssh_to_instance();
+13. get_console_output();
+14. terminate_instance();
+15. doexit(0);
+
+<hr><hr><hr>
+
 # Eucalyptus Testunit Framework
 
 Eucalyptus Testunit Framework is designed to run a list of test scripts written by Eucalyptus developers.
